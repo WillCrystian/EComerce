@@ -1,9 +1,9 @@
-from xml.dom import ValidationErr
 from django.db import models
 from django.contrib.auth.models import User
 from utils.valida_cpf import validar_cpf
 import re
 from django.forms import ValidationError
+
 
 class PerfilUsuario(models.Model):
     usuario = models.ForeignKey(User, on_delete= models.CASCADE, verbose_name= 'usuário')
