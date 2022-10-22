@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    {% include 'parciais/_head.html' %}
+</head>
+
+<body>
+    {% include 'parciais/_nav.html' %}
+
+    <main class="container mt-4 mb-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-columns">
+
+
+                    
+
+                    {% block body %}{% endblock body %}
+
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include 'parciais/_footer.html' %}
+
+    <script src={% static "assets/bootstrap/js/jquery-3.2.1.slim.min.js" %}></script>
+    <script src={% static "assets/bootstrap/js/popper.min.js" %}></script>
+    <script src={% static "assets/bootstrap/js/bootstrap.min.js" %}></script>
+    <script defer src={% static "assets/font-awesome/js/all.js" %}></script>
+    <script src={% static "assets/custom/js/scripts.js" %}></script>
+</body>
+
+</html>
