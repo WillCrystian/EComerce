@@ -7,8 +7,10 @@
 {% block body %}
 <div class="row">
     <div class="col-lg-12">
-        <div class="card-columns">
+        
+        {% include 'parciais/_messages.html' %}
 
+        <div class="card-columns">
             {% for produto in produtos%}
                 <div class="card">
                     <a href="{{produto.slug}}">
