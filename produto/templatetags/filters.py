@@ -1,7 +1,12 @@
 from django import template
+from utils import utils
 
 register = template.Library()
 
 @register.filter(name='estilo_moeda')
 def estilo_moeda(valor):
-    return f'R$ {valor:.2f}'.replace('.',',')
+    return utils.estilo_moeda(valor)
+
+@register.filter
+def cart_total_quant(carrinho):
+    return utils.cart_total_quant(carrinho)
