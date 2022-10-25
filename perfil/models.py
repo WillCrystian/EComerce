@@ -8,7 +8,6 @@ from django.forms import ValidationError
 class PerfilUsuario(models.Model):
     usuario = models.ForeignKey(User, on_delete= models.CASCADE, verbose_name= 'usuário')
     idade = models.PositiveIntegerField()
-    data_nascimento = models.DateField
     cpf =models.CharField(max_length= 11)
     endereco = models.CharField(max_length= 50, verbose_name= 'endereço')
     numero =models.CharField(max_length= 5, verbose_name='número')

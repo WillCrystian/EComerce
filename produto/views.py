@@ -95,7 +95,8 @@ class AdicionarAoCarrinho(View):
         
         # TODO: falha ao adicionar mensagem de adicionar ao carrinho
         messages.success(self.request,
-                         f'{produto_nome} {variacao_nome} foi adicionado com sucesso {quantidade_carrinho}x.')
+                         f'{produto_nome} {variacao_nome} '
+                         f'foi adicionado com sucesso {quantidade}x.')
         return redirect(http_referer)
     
     

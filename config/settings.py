@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'produto',
     'pedido',
     'perfil',
-    
+    'crispy_forms',
     # TODO: Apagar
     "debug_toolbar",
 ]
@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
     
     # TODO: Apagar
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -172,3 +173,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+# Crispy Form 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

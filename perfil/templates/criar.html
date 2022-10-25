@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+{% include "parciais/_messages.html" %}
+
+<div class="row">
+
+    {% if not request.user.username %}
+
+    <div class="col-lg">
+        <h3>Login</h3>
+        <p><h5>Faça login</h5></p>
+
+        <form method="POST" action="">
+            
+        </form>
+    </div>
+    {% endif %}
+
+
+    <div class="col-lg">
+        {% if request.user.username %}
+            <h3>Atualizar Cadastro</h3>
+            <p><h5>Utilize o formulário abaixo para atualizar seu cadastro</h5></p>
+
+        {% else %}
+            <h3>Cadastrar</h3>
+            <p><h5>Caso não tenha cadastro, Utilize o formulário abaixo para cadastrar-se</h5></p>
+     
+        {% endif %}
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{userform|crispy}}
+            {{perfilform|crispy}}
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Enviar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+
+
+{% endblock body %}
+
+
+
+
