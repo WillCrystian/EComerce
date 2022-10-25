@@ -22,7 +22,7 @@
                         Conta
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'perfil:criar' %}">Atualizar</a>
+                        <a class="dropdown-item" href="{% url 'perfil:criar' %}">Atualizar Cadastro</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'perfil:logout' %}">Sair</a>
                     </div>
@@ -30,6 +30,9 @@
             {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'perfil:criar' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'perfil:criar' %}">Cadastra-se</a>
                 </li>
             {% endif %}
 
