@@ -19,7 +19,7 @@ class BasePerfil(View):
         self.perfil = None
         
         if self.request.user.is_authenticated:
-            self.perfil = User.objects.get(username= self.request.user)
+            self.perfil = PerfilUsuario.objects.filter(usuario= self.request.user).first()
             
             contexto = {
                 'perfilform': PerfilForm(data= self.request.POST or None,
@@ -50,6 +50,7 @@ class BasePerfil(View):
 class Criar(BasePerfil):
     def post(self, *args, **kwargs):
         if not self.perfilform.is_valid() or not self.userform.is_valid():
+            messages.error(self.request, 'Algum campo inválido')
             return self.renderizar
         
         # dados do USERFORM
@@ -57,19 +58,7 @@ class Criar(BasePerfil):
         last_name = self.userform.cleaned_data.get('last_name')
         usuario = self.userform.cleaned_data.get('username')
         password = self.userform.cleaned_data.get('password')
-        email = self.userform.cleaned_data.get('email')
-       
-        # dados do PERFILFORM
-        idade = self.perfilform.cleaned_data.get('idade')
-        cpf = self.perfilform.cleaned_data.get('cpf')
-        endereco = self.perfilform.cleaned_data.get('endereco')
-        numero = self.perfilform.cleaned_data.get('numero')
-        complemento = self.perfilform.cleaned_data.get('complemento')
-        bairro = self.perfilform.cleaned_data.get('bairro')
-        cep = self.perfilform.cleaned_data.get('cep')
-        cidade = self.perfilform.cleaned_data.get('cidade')
-        estado = self.perfilform.cleaned_data.get('estado')
-        
+        email = self.userform.cleaned_data.get('email')   
         
         # Atualizar dados do usuário
         if self.request.user.is_authenticated:
@@ -82,12 +71,19 @@ class Criar(BasePerfil):
                 
             usuario.save()
             
-            # incluindo o usuario no FORM
-            self.perfilform.cleaned_data['usuario'] = usuario
-            # obtendo os dados do perfil
-            perfil = PerfilUsuario(**self.perfilform.cleaned_data)
-            perfil.save()            
-            
+            if not self.perfil:
+                # incluindo o usuario no FORM
+                self.perfilform.cleaned_data['usuario'] = usuario
+                # obtendo os dados do perfil
+                perfil = PerfilUsuario(**self.perfilform.cleaned_data)
+                perfil.save()
+            else:
+                perfil = self.perfilform.save(commit=False)
+                perfil.usuario = usuario
+                perfil = PerfilUsuario(**self.perfilform.cleaned_data)
+
+                self.perfil.save()      
+
             messages.success(self.request, 'Dados atualizados com sucesso.')
             
         # Criar usuário

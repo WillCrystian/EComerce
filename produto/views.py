@@ -1,5 +1,5 @@
-from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
+from perfil.models import PerfilUsuario
 from .models import Produto, Variacao
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -130,6 +130,18 @@ class Carrinho(ListaProduto):
         return render(self.request, 'carrinho.html', {'carrinho': carrinho})
     
     
-class Finalizar(ListaProduto):
-    pass
+class ResumoDaCompra(ListaProduto):
+    def get(self, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect('perfil:criar')
+        
+        
+        
+        contexto ={
+            'usuario': self.request.user,
+            'carrinho': self.request.session['carrinho'],
+        }
+        # TODO: falta enviar os dados do usuário no html
+        
+        return render(self.request, 'resumodacompra.html', contexto)
     
