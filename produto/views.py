@@ -135,7 +135,15 @@ class ResumoDaCompra(ListaProduto):
         if not self.request.user.is_authenticated:
             return redirect('perfil:criar')
         
+        perfil = PerfilUsuario.objects.filter(usuario= self.request.user).exists()
         
+        if not perfil:
+            messages.error(self.request, 'Informações incompletas, por favor atualizar cadastro.')
+            return redirect('perfil:criar')
+        
+        if not self.request.session.get('carrinho'):
+            messages.error(self.request, 'Não existe itens no seu carrinho de compras.')
+            return redirect('produto:lista')
         
         contexto ={
             'usuario': self.request.user,
