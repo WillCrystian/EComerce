@@ -5,6 +5,8 @@ from .models import Produto, Variacao
 class VariacaoInline(admin.TabularInline):
     model = Variacao
     extra = 1
+    list_display= ('id','nome', 'produto', 'preco', 'preco_promocional', 'estoque')
+
     
 class ProdutoAdmin(admin.ModelAdmin):
     list_display= ('id','nome', 'preco_marketing', 'preco_marketing_promocional', 'slug', 'tipo')
