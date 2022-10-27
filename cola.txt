@@ -5,3 +5,7 @@
 
 - obter caminho de uma imagem após ter salvo o caminho em uma variável
     src="{% get_media_prefix %}{{variavel}}
+
+- obter o nome de está no CHOICES    
+    pedido.get_status_display
+    -STATUS  é nome da consulta

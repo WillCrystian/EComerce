@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load filters %}
 
-{% block title %}{% endblock title %}
+{% block title %}Resumo da Compra{% endblock title %}
 
 {% block body %}
 
@@ -18,7 +18,7 @@
             <dd class="col-lg-4">{{usuario.last_name}}</dd>
 
             <dt class="col-lg-2">Idade:</dt>
-            <dd class="col-lg-4">{{usuario.perfilusuario.idade}}</dd>
+            <dd class="col-lg-4">{{usuario.perfilusuario_set.idade}}</dd>
             <dt class="col-lg-2">Nascimento:</dt>
             <dd class="col-lg-4">30 de Abril de 1898</dd>
 

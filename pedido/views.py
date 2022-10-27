@@ -8,24 +8,27 @@ from .models import ItemPedido, Pedido
 from django.urls import reverse
 
 
-class DispatchLoginRequired(View):
+class DispatchLoginRequiredMixin(View):
     def dispatch(self, *args, **kwargs):
         if not self.request.user.is_authenticated:
             return redirect('perfil:criar')
         
         return super().dispatch(*args, **kwargs)
+    
+        # verificando se o pedido é do usuário que está ligado
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        qs = qs.filter(usuario= self.request.user)
+        return qs
+    
 
-class Pagar(DispatchLoginRequired, DetailView):
+class Pagar(DispatchLoginRequiredMixin, DetailView):
     template_name = 'pagar.html'
     model = Pedido
     pk_url_kwarg = 'pk'
     context_object_name = 'pedido'
     
-    # verificando se o pedido é do usuário que está ligado
-    def get_queryset(self, *args, **kwargs):
-        qs = super().get_queryset(*args, **kwargs)
-        qs = qs.filter(usuario= self.request.user)
-        return qs
+
 
     
 class SalvarPedido(View):
@@ -97,9 +100,16 @@ class SalvarPedido(View):
             )
 
 
-class Detalhe(View):
-    pass
+class Detalhe(DispatchLoginRequiredMixin, DetailView):
+    model = Pedido
+    context_object_name = 'pedido'
+    template_name = 'detalhe_pedido.html'
+    ordering = ['-id']
 
 
-class Lista(View):
-    pass
+class Lista(DispatchLoginRequiredMixin, ListView):
+    model = Pedido
+    context_object_name = 'pedidos'
+    paginate_by = 6
+    template_name = 'lista_pedidos.html'
+    ordering = ['-id']
