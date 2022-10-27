@@ -1,17 +1,34 @@
-from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.shortcuts import render, redirect   
+from django.views.generic import ListView, DetailView
 from django.views import View
 from django.contrib import messages
 from produto.models import Variacao
 from utils import utils
 from .models import ItemPedido, Pedido
+from django.urls import reverse
 
-class Pagar(View):
-    def get(self, *args, **kwargs):
-        pass
 
-class SalvarPedido(View):
+class DispatchLoginRequired(View):
+    def dispatch(self, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect('perfil:criar')
+        
+        return super().dispatch(*args, **kwargs)
+
+class Pagar(DispatchLoginRequired, DetailView):
     template_name = 'pagar.html'
+    model = Pedido
+    pk_url_kwarg = 'pk'
+    context_object_name = 'pedido'
+    
+    # verificando se o pedido é do usuário que está ligado
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        qs = qs.filter(usuario= self.request.user)
+        return qs
+
+    
+class SalvarPedido(View):
     
     def get(self, *args, **kwargs):
         if not self.request.user.is_authenticated:
@@ -75,8 +92,9 @@ class SalvarPedido(View):
         
         del self.request.session['carrinho']
         
-        return render(self.request, self.template_name)
-
+        return redirect(
+            reverse('pedido:pagar', kwargs={'pk': pedido.pk})
+            )
 
 
 class Detalhe(View):

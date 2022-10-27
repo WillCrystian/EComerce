@@ -19,7 +19,7 @@ class Pedido(models.Model):
     )
     
     def __str__(self) -> str:
-        return f'Pedido do {self.usuario} | R$ {self.total} | Status: {self.status}'
+        return f'Pedido {self.id} | R$ {self.total} | Status: {self.status}'
 
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete= models.CASCADE)

@@ -1,0 +1,7 @@
+############# HTML ###################
+
+- obter valores no HTML de uma FOREIGN KEY
+    EX. fazer um FOR "pedido.itempedido_set.all"
+
+- obter caminho de uma imagem após ter salvo o caminho em uma variável
+    src="{% get_media_prefix %}{{variavel}}
