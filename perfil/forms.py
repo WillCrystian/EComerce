@@ -11,8 +11,26 @@ class PerfilForm(forms.ModelForm):
         model = models.PerfilUsuario
         fields = '__all__'
         exclude = ('usuario',)
-
-
+        
+    def clean(self, *args, **kwargs):
+        # recebe dados do formulário
+        data = self.data
+        # recebe dados do formulário
+        cleaned = self.cleaned_data
+        
+        cpf = self.cleaned_data['cpf']        
+        perfil = models.PerfilUsuario.objects.filter(cpf=cpf).first()
+        validation_error_msgs = {}
+        
+        if perfil:
+            validation_error_msgs['cpf'] = 'CPF já cadastrado'
+            
+        if validation_error_msgs:
+            raise(forms.ValidationError(validation_error_msgs))            
+            
+        return data       
+           
+                
 ###################################################################################################################
 
 class UserForm(forms.ModelForm):

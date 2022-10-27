@@ -89,7 +89,7 @@ class Criar(BasePerfil):
         # Criar usuário
         else:
             usuario = self.userform.save(commit=False)
-            usuario.password = password 
+            usuario.set_password(password)
             usuario.save()
             
             perfil = self.perfilform.save(commit= False)

@@ -9,3 +9,15 @@
 - obter o nome de está no CHOICES    
     pedido.get_status_display
     -STATUS  é nome da consulta
+
+
+############# Formulário ###################
+
+- Fazer vericações nos formulários devemos criar a função CLEAN
+    def clean(self, *args, **kwargs):
+        data = self.data
+        cleaned = self.cleaned_data
+
+        return data
+
+

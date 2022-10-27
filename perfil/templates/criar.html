@@ -2,11 +2,9 @@
 {% load crispy_forms_tags %}
 
 
-{% if not request.user.username %}
-    {% block title %}Login{% endblock title %}
-{% else %}
-    {% block title %}Atualizar Cadastro{% endblock title %}
-{% endif %}
+
+{% block title %}Dados{% endblock title %}
+
 
 
 {% block body %}
