@@ -9,6 +9,8 @@
 - obter o nome de está no CHOICES    
     pedido.get_status_display
     -STATUS  é nome da consulta
+- quando quiser buscar algo na URL colocar no campo de busca as informações abaixo
+    name="termo" value="{{request.GET.termo}}
 
 
 ############# Formulário ###################
