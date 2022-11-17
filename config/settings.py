@@ -46,7 +46,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    
 
 ]
 
@@ -162,5 +161,7 @@ SESSION_SAVE_EVERY_REQUEST = False
 
 # Crispy Form 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+WHITENOISE_AUTOREFRESH = True
 
 django_heroku.settings(locals())
