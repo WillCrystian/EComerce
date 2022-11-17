@@ -1,4 +1,5 @@
 # https://ecommerce-will.herokuapp.com/
+# https://git.heroku.com/ecommerce-will.git
 
 from pathlib import Path
 import os
@@ -33,8 +34,7 @@ INSTALLED_APPS = [
     'pedido',
     'perfil',
     'crispy_forms',
-    # TODO: Apagar
-    "debug_toolbar",
+
 ]
 
 MIDDLEWARE = [
@@ -46,9 +46,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
-    
-    # TODO: Apagar
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -157,13 +155,7 @@ SESSION_SAVE_EVERY_REQUEST = False
 # SESSION_ENGINE = "django.contrib.sessions.backends.file"
 # SESSION_FILE_PATH = '/home/luizotavio/Desktop/temp'
 
-# Debug tools
-# TODO: Apagar
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    # ...
-]
+
 
 # Crispy Form 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
