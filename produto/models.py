@@ -18,8 +18,7 @@ class Produto(models.Model):
                             choices= (('V', 'Variável'),
                                       ('S', 'Simples'),
                                            )
-                            )
-    
+                            )    
     
     def __str__(self) -> str:
         return self.nome

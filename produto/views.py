@@ -13,7 +13,7 @@ from django.db.models import Q
 class ListaProduto(ListView):
     model = Produto
     template_name= 'lista.html'    
-    paginate_by = 6
+    # paginate_by = 6
     context_object_name = 'produtos'
     
    
