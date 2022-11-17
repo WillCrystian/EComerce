@@ -155,8 +155,7 @@ class ResumoDaCompra(ListaProduto):
     
 class Busca(ListaProduto):
     def get_queryset(self, *args, **kwargs):
-        termo = self.request.GET.get('termo') or self.request.session['termo']
-        
+        termo = self.request.GET.get('termo') or self.request.session['termo']        
                 
         qs =  super().get_queryset(*args, **kwargs)
         
