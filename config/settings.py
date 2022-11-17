@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-=b98bnm6wzt*3l02(%=r%ty&gw6=blkyj7-k%l_%hui2r0zs_4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://ecommerce-will.herokuapp.com/']
+ALLOWED_HOSTS = ['https://ecommerce-will.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -126,7 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
